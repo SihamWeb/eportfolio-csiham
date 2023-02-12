@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de nos articles{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mb-5 mt-3">{{'Liste de nos articles'|upper}}</h1>
+
+<div class="d-flex p-2 bd-highlight justify-content-center ">
+    <table class="table table-sm table-striped table-hover mx-5 border rounded border-dark border-5 w-50 p-10 fit-content">
+        <thead class="table-dark">
+            <tr>
+                <th>Identifiant</th>
+                <th>Titre</th>
+                <th>Catégorie</th>
+                <th>Contentu</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody class="table-primary">
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.title }}</td>
+                <td>
+                    {% if article.Category.name is defined %}
+                        {{ article.Category.name }}
+                    {% endif %}
+                </td>
+                <td>{{ article.content }}</td>
+                <td>
+                    <a class="btn btn-outline-secondary mb-2" href="{{ path('article_show', {'id': article.id}) }}">Voir</a>
+                    <a class="btn btn-dark" href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun article trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="d-flex p-2 bd-highlight justify-content-center">
+    <a class="btn btn-primary mt-3 mb-5" href="{{ path('article_new') }}">Créer un nouvel article</a>
+</div>
+{% endblock %}

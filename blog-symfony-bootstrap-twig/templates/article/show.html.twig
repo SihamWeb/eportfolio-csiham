@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mb-5 mt-3">{{ article.title|upper }}</h1>
+
+<div class="d-flex p-2 bd-highlight justify-content-center">
+    <table class="table table-sm table-striped table-hover mx-5 border rounded border-dark border-5">
+        <tbody>
+            <tr class="table-primary">
+                <th>Identifiant</th>
+                <td>{{ article.id }}</td>
+            </tr>
+            <tr class="table-primary">
+                <th>Titre</th>
+                <td>{{ article.title }}</td>
+            </tr>
+            <tr class="table-primary">
+                <th>Contenu</th>
+                <td>{{ article.content }}</td>
+            </tr>
+            <tr class="table-primary">
+                <th>Catégorie</th>
+                <td>
+                    {% if article.Category.name is defined %}
+                        {{ article.Category.name }}
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="d-flex p-2 bd-highlight justify-content-center">
+    <a class="btn btn-dark" href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
+</div>
+<div class="d-flex p-2 bd-highlight justify-content-center mt-3">
+    <a class="btn btn-outline-primary me-2" href="{{ path('article_index') }}">Retour à la liste</a>
+    {{ include('article/_delete_form.html.twig') }}
+</div>
+{% endblock %}
