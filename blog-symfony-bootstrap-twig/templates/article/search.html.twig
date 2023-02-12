@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultat de la recherche{% endblock %}
+
+{% block body %}
+	<h1>Résultat de la recherche</h1>
+
+	<table class="datatable table table-dark table-borderless table-hover table-article">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Titre</th>
+				<th>Catégorie</th>
+				<th>Content</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for article in articles %}
+			<tr>
+				<td>{{ article.id }}</td>
+				<td>{{ article.title }}</td>
+				<td>
+					{% if article.Category.name is defined %}
+						{{ article.Category.name }}
+					{% endif %}
+				</td>
+				<td>{{ article.content }}</td>
+				<td class="text-nowrap">
+					<a href="{{ path('article_show', {'id': article.id}) }}"><button type="button" class="btn btn-outline-light btn-sm">Voir</button></a>
+					<a href="{{ path('article_edit', {'id': article.id}) }}"><button type="button" class="btn btn-outline-light btn-sm">Modifier</button></a>
+				</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="4">no records found</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

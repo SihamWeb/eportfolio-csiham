@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+        <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ path('article_index') }}">L222 - S4</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{{ path('article_index') }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Articles
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ path('article_index') }}">Voir tous les articles</a></li>
+                                <li><a class="dropdown-item" href="{{ path('article_new') }}">Créer un nouvel article</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{{ path('category_index') }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Catégories
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ path('category_index') }}">Voir toutes les catégories</a></li>
+                                <li><a class="dropdown-item" href="{{ path('category_new') }}">Créer une nouvelle catégorie</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Gestion du compte
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% if app.user %}
+                                    <li><a class="dropdown-item" href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                                {% else %}
+                                    <li><a class="dropdown-item" href="{{ path('app_login') }}">Se connecter</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('app_register') }}">S'inscrire</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                     </ul>
+                    <form class="d-flex" action="/article/search" method="post">
+						<input class="form-control me-sm-2" type="search" name="Keywords" placeholder="Rechercher">
+						<button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+					</form>
+                </div>
+             </div>
+        </nav>
+        {% if app.user %}
+        {% else %}
+            <h2>Vous n'êtes pas connecté</h2>
+        {% endif %}
+        <div class="container-fluid">
+            {% block body %}{% endblock %}
+        </div>
+        
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>               
+            <script src="/assets/js/custom.js"></script>
+        {% endblock %}
+    </body>
+</html>

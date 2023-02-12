@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+    <h1>Bonjour, {{ app.user.username | upper }}</h1>
+
+        <h2>Modification de votre profil</h2>
+        <form method="post">
+            <div class="form-field">
+                <label for="mdp">Username</label>
+                <input type="username" id="usern" name="usern" class="form-control">
+            </div>
+            <div class="form-field">
+                <label for="mdp2">Prénom</label>
+                <input type="text" id="firstname" name="firstname" class="form-control">
+            </div>
+            <div class="form-field">
+                <label for="mdp2">Nom</label>
+                <input type="name" id="nom" name="nom" class="form-control">
+            </div>
+            <button>Valider</button>
+        </form>
+{% endblock %}
