@@ -1,0 +1,71 @@
+:root {
+    --bs-body-color: #212529e4 !important;
+    --bs-dark-rgb: 52, 56, 60 !important;
+}
+
+.table-dark {
+    --bs-table-bg: #212529e4 !important;
+}
+
+.btn-dark {
+    --bs-btn-bg: #212529e4 !important;
+}
+
+.btn-outline-light {
+    --bs-btn-color: rgba(255, 255, 255, .65) !important;
+    --bs-btn-border-color: rgba(255, 255, 255, .65) !important;
+}
+
+.btn-danger {
+    --bs-btn-bg: #92343d !important;
+    --bs-btn-border-color: #92343d !important;
+ }
+
+body {
+    height: 100vh;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);}
+
+h1 {
+    margin-bottom: 1.5rem !important;
+    font-weight: bolder !important;
+}
+
+.container-fluid:nth-child(2) {
+    padding: 50px;
+}
+
+table {
+    border-collapse: collapse;
+    border-radius: 0.375em;
+    overflow: hidden;
+}
+
+.table > :not(caption) > * > * {
+    padding: 1rem 1.4rem !important;
+}
+
+.table-article th:nth-child(2) {
+    width: 10%;
+}
+
+.table-article th:nth-child(3) {
+    width: 12%;
+}
+
+.table-article th:last-child {
+    width: 13%;
+}
+
+tbody td {
+    font-weight: 500;
+    color: rgba(255, 255, 255, .65) !important;
+}
+
+.btn-sm {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.btn-category {
+    margin: 0 !important;
+}

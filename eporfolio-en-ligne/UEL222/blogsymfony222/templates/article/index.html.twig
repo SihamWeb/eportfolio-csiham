@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block body %}
+    <h1>Bonjour, {{ app.user.username | upper }}</h1>
+
+        <h2>Votre profil {{ app.user.username | upper }}</h2>
+            <table class="table table-dark table-borderless table-hover table-article">
+                <thead class="table-dark"></thead>
+                <tbody>
+                    <tr>
+                        <th scope="col">Username</td>
+                        <td>{{ app.user.username }}</td>
+                        <td><a href="#" class="btn btn-outline-light btn-sm">edit</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Firstname</td>
+                        {% if app.user.firstname == null %}
+                            <td>Input a firstname</td>
+                            <td><a href="#" class="btn btn-outline-light btn-sm">edit</a></td>
+                        {% else %}
+                            <td>{{ app.user.firstname }}</td>
+                            <td><a href="#" class="btn btn-outline-light btn-sm">edit</a></td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <th scope="col">Name</td>
+                        {% if app.user.name == null %}
+                            <td>Input a name</td>
+                            <td><a href="#" class="btn btn-outline-light btn-sm">edit</a></td>
+                        {% else %}
+                            <td>{{ app.user.name }}</td>
+                            <td><a href="#" class="btn btn-outline-light btn-sm">edit</a></td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <th scope="col">Mot de passe</td>
+                        <td>*****</td>
+                        <td><a href="href="#" class="btn btn-outline-light btn-sm">edit</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        <h2>Liste des articles</h2>
+
+        <table class="datatable table table-dark table-borderless table-hover table-article">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Content</th>
+                    <th>Date</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.id }}</td>
+                    <td>{{ article.title }}</td>
+                    <td>
+                        {% if article.Category.name is defined %}
+                            {{ article.Category.name }}
+                        {% endif %}
+                    </td>
+                    <td>{{ article.content }}</td>
+                    <td>{{ article.date|date('Y-m-d') }}</td>
+                    <td>
+                        <a href="{{ path('article_show', {'id': article.id}) }}" class="btn btn-outline-light btn-sm">show</a>
+                        <a href="{{ path('article_edit', {'id': article.id}) }}" class="btn btn-outline-light btn-sm">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('article_new') }}" class="btn btn-dark">Create new</a>
+{% endblock %}
